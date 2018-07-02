@@ -11,7 +11,7 @@ export class Entity4 extends GenericEntity {
     parentEntity: Entity3;
 
 
-    @OneToMany(type => Entity5, entity => entity.parentEntity, { cascade: true })
+    @OneToMany(type => Entity5, entity => entity.parentEntity)
     subEntities: Entity5[];
 
 }

@@ -10,6 +10,6 @@ export class Entity9 extends GenericEntity {
     @Index()
     parentEntity: Entity8;
 
-    @OneToMany(type => Entity10, entity => entity.parentEntity, { cascade: true })
+    @OneToMany(type => Entity10, entity => entity.parentEntity)
     subEntities: Entity10[];
 }
