@@ -59,7 +59,7 @@ async function createEntityNode(level: number, parentEntity: any): Promise<any> 
 }
 
 
-function simulateHydration(level: number, parentEntity: any): any {
+function sameComplexityTreeBuild(level: number, parentEntity: any): any {
 
     const e = new ENTITIES[level].EntityConstructor;
     e.field0 = `level:${level}`;
@@ -75,7 +75,7 @@ function simulateHydration(level: number, parentEntity: any): any {
     if (level + 1 < ENTITIES.length) {
         const sub = [];
         for (let i = 0; i < ENTITIES[level].nChildren; i++) {
-            const subEntity = simulateHydration(level + 1, e);
+            const subEntity = sameComplexityTreeBuild(level + 1, e);
             sub.push(subEntity);
         }
         e.subEntities = sub;
@@ -128,12 +128,12 @@ function simulateHydration(level: number, parentEntity: any): any {
 
         }
 
-        console.log("\n\n############################################## Simulated hydration of same complexity object tree:");
+        console.log("\n\n############################################## Same complexity tree build:");
 
         for (let nTest = 0; nTest < 5; nTest++) {
             console.log(`\n>>>>>>>> Test n.${nTest}`);
-            const ts = new Timer("Simulated hydration");
-            const e = simulateHydration(0, null);
+            const ts = new Timer("Manual tree build");
+            const e = sameComplexityTreeBuild(0, null);
             ts.stop();
         }
 
